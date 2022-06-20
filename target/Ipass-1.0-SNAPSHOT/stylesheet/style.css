@@ -1,0 +1,65 @@
+@import "nav_bar.css";
+@import "login.css";
+@import "footer.css";
+@import "form.css";
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  } 
+  body, html{
+    background: #f2f2f2;
+    height: 100%;
+  }
+  
+.mid_break{
+    height: 150px;
+    width: 100%;
+}
+
+.nav-items li .active{
+    color: blue;
+}
+
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../img/tumblr_muxmblJGFH1rg4i4eo1_500.gif.crdownload");
+
+  /* Set a specific height */
+  height: 50%;
+
+  /* Position and center the image to scale nicely on all screens */
+  font-style: italic;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text h1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-text p{
+    position: absolute;
+    font-size: 50px;
+    top: 55%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.small_break{
+  width: 100%;
+  height: 10%;
+}
