@@ -1,79 +1,174 @@
-var selectedRow = null
+/**
+ * ToDo App
+ */
 
-function onFormSubmit() {
-    if (validate()) {
-        var formData = readFormData();
-        if (selectedRow == null)
-            insertNewRecord(formData);
-        else
-            updateRecord(formData);
-        resetForm();
+var todoApp = {
+    /*
+     * API methods to call Java backend.
+     */
+    apiEndpoint: "/api",
+
+    createTodoItem: function(name, category, isComplete) {
+        $.post(todoApp.apiEndpoint, {
+                "method": "createTodoItem",
+                "todoItemName": name,
+                "todoItemCategory": category,
+                "todoItemComplete": isComplete
+            },
+            function(data) {
+                var todoItem = data;
+                todoApp.addTodoItemToTable(todoItem.id, todoItem.name, todoItem.category, todoItem.complete);
+            },
+            "json");
+    },
+
+    getTodoItems: function() {
+        $.post(todoApp.apiEndpoint, {
+                "method": "getTodoItems"
+            },
+            function(data) {
+                var todoItemArr = data;
+                $.each(todoItemArr, function(index, value) {
+                    todoApp.addTodoItemToTable(value.id, value.name, value.category, value.complete);
+                });
+            },
+            "json");
+    },
+
+    updateTodoItem: function(id, isComplete) {
+        $.post(todoApp.apiEndpoint, {
+                "method": "updateTodoItem",
+                "todoItemId": id,
+                "todoItemComplete": isComplete
+            },
+            function(data) {},
+            "json");
+    },
+
+    /*
+     * UI Methods
+     */
+    addTodoItemToTable: function(id, name, category, isComplete) {
+        var rowColor = isComplete ? "active" : "warning";
+
+        todoApp.ui_table().append($("<tr>")
+            .append($("<td>").text(name))
+            .append($("<td>").text(category))
+            .append($("<td>")
+                .append($("<input>")
+                    .attr("type", "checkbox")
+                    .attr("id", id)
+                    .attr("checked", isComplete)
+                    .attr("class", "isComplete")
+                ))
+            .addClass(rowColor)
+        );
+    },
+
+    /*
+     * UI Bindings
+     */
+    bindCreateButton: function() {
+        todoApp.ui_createButton().click(function() {
+            todoApp.createTodoItem(todoApp.ui_createNameInput().val(), todoApp.ui_createCategoryInput().val(), false);
+            todoApp.ui_createNameInput().val("");
+            todoApp.ui_createCategoryInput().val("");
+        });
+    },
+
+    bindUpdateButton: function() {
+        todoApp.ui_updateButton().click(function() {
+            // Disable button temporarily.
+            var myButton = $(this);
+            var originalText = myButton.text();
+            $(this).text("Updating...");
+            $(this).prop("disabled", true);
+
+            // Call api to update todo items.
+            $.each(todoApp.ui_updateId(), function(index, value) {
+                todoApp.updateTodoItem(value.name, value.value);
+                $(value).remove();
+            });
+
+            // Re-enable button.
+            setTimeout(function() {
+                myButton.prop("disabled", false);
+                myButton.text(originalText);
+            }, 500);
+        });
+    },
+
+    bindUpdateCheckboxes: function() {
+        todoApp.ui_table().on("click", ".isComplete", function(event) {
+            var checkboxElement = $(event.currentTarget);
+            var rowElement = $(event.currentTarget).parents('tr');
+            var id = checkboxElement.attr('id');
+            var isComplete = checkboxElement.is(':checked');
+
+            // Togle table row color
+            if (isComplete) {
+                rowElement.addClass("active");
+                rowElement.removeClass("warning");
+            } else {
+                rowElement.removeClass("active");
+                rowElement.addClass("warning");
+            }
+
+            // Update hidden inputs for update panel.
+            todoApp.ui_updateForm().children("input[name='" + id + "']").remove();
+
+            todoApp.ui_updateForm().append($("<input>")
+                .attr("type", "hidden")
+                .attr("class", "updateComplete")
+                .attr("name", id)
+                .attr("value", isComplete));
+
+        });
+    },
+
+    /*
+     * UI Elements
+     */
+    ui_createNameInput: function() {
+        return $(".todoForm #inputItemName");
+    },
+
+    ui_createCategoryInput: function() {
+        return $(".todoForm #inputItemCategory");
+    },
+
+    ui_createButton: function() {
+        return $(".todoForm button");
+    },
+
+    ui_table: function() {
+        return $(".todoList table tbody");
+    },
+
+    ui_updateButton: function() {
+        return $(".todoUpdatePanel button");
+    },
+
+    ui_updateForm: function() {
+        return $(".todoUpdatePanel form");
+    },
+
+    ui_updateId: function() {
+        return $(".todoUpdatePanel .updateComplete");
+    },
+
+    /*
+     * Install the TodoApp
+     */
+    install: function() {
+        todoApp.bindCreateButton();
+        todoApp.bindUpdateButton();
+        todoApp.bindUpdateCheckboxes();
+
+        todoApp.getTodoItems();
     }
-}
+};
 
-function readFormData() {
-    var formData = {};
-    formData["fullName"] = document.getElementById("fullName").value;
-    formData["email"] = document.getElementById("email").value;
-    formData["salary"] = document.getElementById("salary").value;
-    formData["city"] = document.getElementById("city").value;
-    return formData;
-}
-
-function insertNewRecord(data) {
-    var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
-    cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.fullName;
-    cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.email;
-    cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.salary;
-    cell4 = newRow.insertCell(3);
-    cell4.innerHTML = data.city;
-    cell4 = newRow.insertCell(4);
-    cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                       <a onClick="onDelete(this)">Delete</a>`;
-}
-
-function resetForm() {
-    document.getElementById("fullName").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("salary").value = "";
-    document.getElementById("city").value = "";
-    selectedRow = null;
-}
-
-function onEdit(td) {
-    selectedRow = td.parentElement.parentElement;
-    document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("email").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("salary").value = selectedRow.cells[2].innerHTML;
-    document.getElementById("city").value = selectedRow.cells[3].innerHTML;
-}
-function updateRecord(formData) {
-    selectedRow.cells[0].innerHTML = formData.fullName;
-    selectedRow.cells[1].innerHTML = formData.email;
-    selectedRow.cells[2].innerHTML = formData.salary;
-    selectedRow.cells[3].innerHTML = formData.city;
-}
-
-function onDelete(td) {
-    if (confirm('Are you sure to delete this record ?')) {
-        row = td.parentElement.parentElement;
-        document.getElementById("employeeList").deleteRow(row.rowIndex);
-        resetForm();
-    }
-}
-function validate() {
-    isValid = true;
-    if (document.getElementById("fullName").value == "") {
-        isValid = false;
-        document.getElementById("fullNameValidationError").classList.remove("hide");
-    } else {
-        isValid = true;
-        if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
-            document.getElementById("fullNameValidationError").classList.add("hide");
-    }
-    return isValid;
-}
+$(document).ready(function() {
+    todoApp.install();
+});
