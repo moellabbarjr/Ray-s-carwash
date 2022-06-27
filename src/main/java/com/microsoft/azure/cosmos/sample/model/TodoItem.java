@@ -8,6 +8,7 @@ public class TodoItem {
     private boolean complete;
     private String id;
     private String name;
+    private String date;
 
     public String getCategory() {
         return category;
@@ -15,6 +16,10 @@ public class TodoItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public void setdate(String date) {
+        this.date = date;
     }
 
     public String getEntityType() {

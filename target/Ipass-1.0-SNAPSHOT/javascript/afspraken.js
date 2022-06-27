@@ -8,16 +8,17 @@ var todoApp = {
      */
     apiEndpoint: "/api",
 
-    createTodoItem: function(name, category, isComplete) {
+    createTodoItem: function(name, category, date, isComplete) {
         $.post(todoApp.apiEndpoint, {
                 "method": "createTodoItem",
                 "todoItemName": name,
                 "todoItemCategory": category,
+                "todoItemDate": date,
                 "todoItemComplete": isComplete
             },
             function(data) {
                 var todoItem = data;
-                todoApp.addTodoItemToTable(todoItem.id, todoItem.name, todoItem.category, todoItem.complete);
+                todoApp.addTodoItemToTable(todoItem.id, todoItem.name, todoItem.category,todoItem.date , todoItem.complete);
             },
             "json");
     },

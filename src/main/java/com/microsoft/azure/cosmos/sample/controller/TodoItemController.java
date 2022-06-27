@@ -25,12 +25,12 @@ public class TodoItemController {
         this.todoDao = todoDao;
     }
 
-    public TodoItem createTodoItem(@NonNull String name,
-                                   @NonNull String category, boolean isComplete) {
+    public TodoItem createTodoItem(@NonNull String name, @NonNull String category,@NonNull String date, boolean isComplete) {
         TodoItem todoItem = new TodoItem();
 
         todoItem.setName(name);
         todoItem.setCategory(category);
+        todoItem.setdate(date);
         todoItem.setComplete(isComplete);
         todoItem.setId(UUID.randomUUID().toString());
 
