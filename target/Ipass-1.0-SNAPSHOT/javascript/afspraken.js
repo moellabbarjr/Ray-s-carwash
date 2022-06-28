@@ -13,12 +13,12 @@ var todoApp = {
                 "method": "createTodoItem",
                 "todoItemName": name,
                 "todoItemCategory": category,
-                "todoItemDate": date,
+                "inputItemDate": date,
                 "todoItemComplete": isComplete
             },
             function(data) {
                 var todoItem = data;
-                todoApp.addTodoItemToTable(todoItem.id, todoItem.name, todoItem.category,todoItem.date , todoItem.complete);
+                todoApp.addTodoItemToTable(todoItem.id, todoItem.name, todoItem.category, todoItem.date , todoItem.complete);
             },
             "json");
     },
@@ -30,7 +30,7 @@ var todoApp = {
             function(data) {
                 var todoItemArr = data;
                 $.each(todoItemArr, function(index, value) {
-                    todoApp.addTodoItemToTable(value.id, value.name, value.category, value.complete);
+                    todoApp.addTodoItemToTable(value.id, value.name, value.category, value.date, value.complete);
                 });
             },
             "json");
@@ -49,12 +49,13 @@ var todoApp = {
     /*
      * UI Methods
      */
-    addTodoItemToTable: function(id, name, category, isComplete) {
+    addTodoItemToTable: function(id, name, category, date, isComplete) {
         var rowColor = isComplete ? "active" : "warning";
 
         todoApp.ui_table().append($("<tr>")
             .append($("<td>").text(name))
             .append($("<td>").text(category))
+            .append($("<td>").text(date))
             .append($("<td>")
                 .append($("<input>")
                     .attr("type", "checkbox")
