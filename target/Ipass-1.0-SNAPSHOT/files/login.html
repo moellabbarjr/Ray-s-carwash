@@ -1,81 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <link rel="stylesheet" href="../stylesheet/style.css">
-    <title>Login</title>
+    <title>Login Ray's Carwash</title>
 </head>
-<body>
-    <nav>
-        <div class="menu-icon">
-            <span class="fas fa-bars"></span>
-        </div>
-        <a href="../index.html">
-            <div class="logo">
-                <img style="width: 100px ;" src="../img/logo.jpg" alt="">
+    <body>
+        <nav>
+            <div class="menu-icon">
+                <span class="fas fa-bars"></span>
             </div>
-        </a>
-        <div class="nav-items">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="afspraak.html">Afspraak maken</a></li>
-            <li><a class="active" href="login.html">login</a></li>
-        </div>
-        <div class="search-icon">
-            <span class="fas fa-search"></span>
-        </div>
-        <div class="cancel-icon">
-            <span class="fas fa-times"></span>
-        </div>
-    </nav>
-
-    <div class="mid_break"></div>
-
-    <div class="container container-center">
-        <div class="loginCard">
-            <div class="title">
-                <p>login</p>
+            <a href="index.html">
+                <div class="logo">
+                    <img style="width: 100px ;" src="../img/logo.jpg" alt="">
+                </div>
+            </a>
+            <div class="nav-items">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="afspraak.html">Afspraak maken</a></li>
+                <li><a class="active" href="login.html">login</a></li>
             </div>
-            <form  method="" action="">
-                <div class="form-container">
-                    <label for="loginEmail">Naam:</label>
-                    <input style="margin-bottom: 20px;" id="loginEmail" type="text" name="loginEmail" placeholder="Naam" required>
-                    <label for="loginPassword">Wachtwoord:</label>
-                    <input id="loginPassword" type="password" name="loginPassword" placeholder="Wachtwoord" required>
-                </div>
-                <div class="button-container">
-                    <button id="submit" name="submit" class="submit" type="submit">Inloggen</button>
-                </div>
-            </form>
-        </div>
-    </div>
+            <div class="search-icon">
+                <span class="fas fa-search"></span>
+            </div>
+            <div class="cancel-icon">
+                <span class="fas fa-times"></span>
+            </div>
+        </nav>
+        <div class="mid_break"></div>
 
+        <form action="/LoginServlet" method="post" onclick="ValidateEmail(document.getElementById('emailId'))">
+            <div class="container">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Please enter your email" name="emailId" id = "emailId" >
 
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Please enter Password" name="password" id="password" required>
 
-    <div style="height: 185px;" class="mid_break"></div>
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="rememberme"> Remember me
+                </label>
+            </div>
 
-    <br>
-    <footer>
-      <div class="footer-content">
-          <img style="width: 100px;" src="../img/logo.jpg" alt="">
-      </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancelbutton">Cancel</button>
+                <span class="psw">Forgot <a href="<%=request.getContextPath()%>/forgetpassword.jsp">password?</a></span>
+            </div>
+        </form>
 
-      <p style="position: absolute; left: 20%; top: 27%; font-size: 16px;">
-          <span style="color: red;">Rey's </span>
-          <span style="color:blue; font-size: 19px ;">carwash</span> <br>
-          Karspeldreef 98, <br> 1102 BX <br> Amsterdam
-      </p>
+        <div class="mid_break"></div>
 
-      <ul class="socials">
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-          <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-          <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-       </ul>
-  </footer>
-
-    <script type="module" src="../javascript/script.js"></script>
-</body>
+        <footer>
+            <div class="footer-content">
+                <img style="width: 100px;" src="../img/logo.jpg" alt="">
+            </div>
+            <p style="position: absolute; left: 20%; top: 27%; font-size: 16px;">
+                <span style="color: red;">Rey's </span>
+                <span style="color:blue; font-size: 19px ;">carwash</span> <br>
+                Karspeldreef 98, <br> 1102 BX <br> Amsterdam
+            </p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </footer>
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js"></script>
+        <script src="../javascript/script.js"></script>
+    </body>
 </html>
