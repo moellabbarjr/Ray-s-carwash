@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <link rel="stylesheet" href="../stylesheet/style.css">
+    <link href="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <title>Wachtwoord vergeten?</title>
 </head>
 <body>

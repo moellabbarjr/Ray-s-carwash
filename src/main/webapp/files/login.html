@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <link rel="stylesheet" href="../stylesheet/style.css">
+    <link href="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <title>Login Ray's Carwash</title>
 </head>
     <body>
@@ -30,26 +31,28 @@
         </nav>
         <div class="mid_break"></div>
 
-        <form action="/LoginServlet" method="post" onclick="ValidateEmail(document.getElementById('emailId'))">
-            <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Please enter your email" name="emailId" id = "emailId" >
+        <div class="todoForm">
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Please enter Password" name="password" id="password" required>
+            <form class="form-horizontal" action="/LoginServlet" method="post" onclick="ValidateEmail(document.getElementById('emailId'))">
+                <div class="container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Please enter your email" name="emailId" id = "emailId" >
 
-                <button type="submit">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="rememberme"> Remember me
-                </label>
-            </div>
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Please enter Password" name="password" id="password" required>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbutton">Cancel</button>
-                <span class="psw">Forgot <a href="<%=request.getContextPath()%>/forgetpassword.jsp">password?</a></span>
-            </div>
-        </form>
+                    <button type="submit">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="rememberme"> Remember me
+                    </label>
+                </div>
 
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbutton">Cancel</button>
+                    <span class="psw">Forgot <a href="<%=request.getContextPath()%>/forgetpassword.jsp">password?</a></span>
+                </div>
+            </form>
+        </div>
         <div class="mid_break"></div>
 
         <footer>
