@@ -42,6 +42,7 @@
 /* Place text in the middle of the image */
 .hero-text h1 {
   position: absolute;
+  font-size: 30px;
   top: 20%;
   left: 20%;
   transform: translate(-50%, -50%);
@@ -51,8 +52,8 @@
 .hero-text p{
     position: absolute;
     font-size: 50px;
-    top: 55%;
-    left: 22%;
+    top: 44%;
+    left: 23%;
     transform: translate(-50%, -50%);
     color: white;
 }
@@ -100,6 +101,26 @@ span.psw {
     padding-top: 16px;
 }
 
+.title-grid{
+    font-size: 17px;
+    text-align: center;
+    color: blue;
+}
+
+.decs{
+    font-size: 13px;
+    text-align: center;
+}
+
+.img-index{
+    position: relative;
+    left: 38%;
+    padding-bottom: 10px;
+}
+.row{
+    position: relative;
+    right: 0.4%;
+}
 /* Change styles for span and cancel button
 on extra small screens */
 @media screen and (max-width: 300px) {

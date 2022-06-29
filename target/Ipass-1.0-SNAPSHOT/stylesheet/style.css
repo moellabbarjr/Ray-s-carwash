@@ -23,8 +23,6 @@
 .nav-items li .active{
     color: blue;
 }
-
-
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
@@ -100,6 +98,10 @@ button:hover {
 span.psw {
     float: right;
     padding-top: 16px;
+}
+
+.title-grid{
+    font-size: 17px;
 }
 
 /* Change styles for span and cancel button
