@@ -117,18 +117,33 @@ span.psw {
     left: 38%;
     padding-bottom: 10px;
 }
+
+.decs:hover{
+    color: blue ;
+    transform: 0.5s;
+}
+
 .row{
     position: relative;
     right: 0.4%;
 }
 /* Change styles for span and cancel button
 on extra small screens */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 500px) {
     span.psw {
         display: block;
         float: none;
     }
     .cancelbutton {
         width: 100%;
+    }
+    .img-index{
+        position: relative;
+        left: 25%;
+    }
+    .title-grid{
+        position: relative;
+        width: 100%
+        left: ;
     }
 }
