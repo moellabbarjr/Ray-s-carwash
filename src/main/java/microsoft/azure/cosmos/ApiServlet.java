@@ -22,7 +22,7 @@ public class ApiServlet extends HttpServlet {
     // API Parameters
     public static final String TODO_ITEM_ID = "todoItemId";
     public static final String TODO_ITEM_NAME = "todoItemName";
-    public static final String TODO_ITEM_DATE = "todoItemDate";
+//    public static final String TODO_ITEM_DATE = "todoItemDate";
     public static final String TODO_ITEM_CATEGORY = "todoItemCategory";
     public static final String TODO_ITEM_COMPLETE = "todoItemComplete";
 
@@ -42,7 +42,7 @@ public class ApiServlet extends HttpServlet {
 
         String id = request.getParameter(TODO_ITEM_ID);
         String name = request.getParameter(TODO_ITEM_NAME);
-        String date = request.getParameter(TODO_ITEM_DATE);
+//        String date = request.getParameter(TODO_ITEM_DATE);
         String category = request.getParameter(TODO_ITEM_CATEGORY);
         String itemComplete = request.getParameter(TODO_ITEM_COMPLETE);
         boolean isComplete = itemComplete!= null && itemComplete.equalsIgnoreCase("true");
@@ -50,7 +50,7 @@ public class ApiServlet extends HttpServlet {
         switch (request.getParameter(API_METHOD)) {
             case CREATE_TODO_ITEM:
                 apiResponse = gson.toJson(todoItemController.createTodoItem(name,
-                        category, date, isComplete));
+                        category, isComplete));
                 break;
             case GET_TODO_ITEMS:
                 apiResponse = gson.toJson(todoItemController.getTodoItems());
