@@ -12,3 +12,11 @@ function ValidateEmail(emailId)
         return false;
     }
 }
+
+function spamChk() {
+    var ent1 = document.form-horizontal.Email.value
+    var str1 = ent1.toLowerCase();
+    if (str1.includes("noreply")) {
+    document.form-horizontal.reset();
+    }
+}

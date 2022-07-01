@@ -44,14 +44,14 @@
                 <div class="form-group">
                     <label for="inputItemName" class="col-sm-2">Volledige naam</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputItemName" placeholder="Volledige naam" required >
+                        <input oninput="spamChk()" type="text" class="form-control" id="inputItemName" placeholder="Volledige naam" required >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputItemCategory" class="col-sm-2">Telefoon nummer</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="inputItemCategory" placeholder="Mobiele nummer" required >
+                        <input oninput="spamChk()" type="number" class="form-control" id="inputItemCategory" placeholder="Mobiele nummer" required >
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                         <input type="number" class="form-control" id="inputItemDate" placeholder="Datum afspraak" required >
                     </div>
                 </div>
-                <button type="button" class="submit">Versturen</button>
+                <button oninput="spamChk()" type="button" class="submit">Versturen</button>
             </div>
         </form>
     </div>
@@ -73,19 +73,31 @@
         <div class="footer-content">
             <img style="width: 100px;" src="../img/logo.jpg" alt="">
         </div>
-        <p style="position: absolute; left: 20%; top: 27%; font-size: 16px;">
+        <p style="position: absolute; left: 10%; top: 27%; font-size: 16px;">              
             <span style="color: red;">Rey's </span>
-            <span style="color:blue; font-size: 19px ;">carwash</span> <br>
+            <span style="color:lightblue; font-size: 19px ;">carwash</span> <br>
             Karspeldreef 98, <br> 1102 BX <br> Amsterdam
         </p>
-
         <ul class="socials">
             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
             <li><a href="#"><i class="fa fa-youtube"></i></a></li>
             <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
+         </ul>
+         <p style="position: absolute; left: 25%; top: 27%; font-size: 16px;">
+            <span style="color: red;">Openingstijden</span><br>
+            <span style="color:lightblue;">Wasboxen:</span>
+            Dagelijks van <br> 09:00 tot 22:00 <br>
+            <span style="color:lightblue; ">Wasstraat:</span>
+            Dagelijks van <br> 09:00 tot 18:00
+        </p>
+        <p style="position: absolute; left: 65%; top: 27%; font-size: 16px;">              
+            <span style="color: red;">Telefoonnummer:</span><br>
+            +31 020 304 7465 <br>
+            <span style="color: lightblue;">Email:</span><br>
+            info@ray-scarwash.nl
+        </p>
     </footer>
 
 <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
